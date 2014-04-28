@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ListIterator;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import beans;
+import beans.*;
 
 public class P3 extends HttpServlet {
 	
