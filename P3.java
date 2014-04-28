@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ListIterator;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import beans;
 
 public class P3 extends HttpServlet {
 	
@@ -31,7 +32,7 @@ public class P3 extends HttpServlet {
     	if(step.equals("1")){
     		String query = request.getParameter("query");
     		if(query.equals("movies")){
-                Bean bean = new Bean();
+                daysBean bean = new daysBean();
                 bean.setDays(TvGuide.getDays());
                 request.setAttribute("days", bean);
 

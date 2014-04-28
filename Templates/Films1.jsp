@@ -1,6 +1,6 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
-<%@page import="Bean"%>
+<%@page import="beans.*"%>
 
 <html>
     <head>
@@ -12,7 +12,7 @@
         <h3>Selecciona un d&iacute;a:</h3>
         <form method='POST' action='?step=2'>
             <input type='hidden' name='query' value='movies'>
-            <% Bean bean = (Bean)request.getAttribute("days"); %>
+            <% daysBean bean = (daysBean)request.getAttribute("days"); %>
             <% List<String> days = bean.getDays(); %>
             <% ListIterator<String> it = days.listIterator(); %>
     		<% for(int ii=0; ii<days.size(); ii++){ %>

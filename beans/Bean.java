@@ -1,11 +1,12 @@
+package beans;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class Bean {
+public class daysBean {
     List<String> days;
 
-    public Bean() {}
+    public daysBean() {}
 
     public List<String> getDays() {
         return (days);
