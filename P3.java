@@ -31,28 +31,13 @@ public class P3 extends HttpServlet {
     	if(step.equals("1")){
     		String query = request.getParameter("query");
     		if(query.equals("movies")){
-    			out.println("<html><head><title>Servicio TV</title>");
-    		    out.println("</head><body>");
-    		    out.println("<h1>Servicio de consulta de la programaci&oacute;n</h1>");
-    		    out.println("<h2>Pel&iacute;culas</h2>");
-    		    out.println("<h3>Selecciona un d&iacute;a:</h3>");
-    		    out.println("<form method='POST' action='?step=2'>");
-    		    out.println("<input type='hidden' name='query' value='movies'>");
-                List<String> days = TvGuide.getDays();
-                ListIterator<String> it = days.listIterator();
-    		    for(int ii=0; ii<days.size(); ii++){
-                    String day = it.next();
-    		    	if(ii==days.size()-1){
-        		    	out.println("<input type='radio' name='day' value='" + day + "' checked> " + day + "<BR>");
-        		    }
-    		    	else{
-    		    		out.println("<input type='radio' name='day' value='" + day + "' > " + day + "<BR>");
-   		     		}
-    		    }
-    		    out.println("<p><input type='submit' value='Enviar'>");
-    		    out.println("<input type='submit' value='Atr&aacute;s' onClick='document.forms[0].method=\"GET\"'>");
-    		    out.println("</form>");
-    		    out.println("</body></html>");
+                bean = new DaysBean();
+                bean.setDays(TvGuide.getDays());
+                request.setAttribute("days", bean);
+
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher("/Films1.jsp");
+                rd.forward(request,response);
     		}
     		else if(query.equals("shows")){
     			out.println("<html><head><title>Servicio TV</title>");
