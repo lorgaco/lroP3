@@ -11,7 +11,7 @@
         <h3>Selecciona un d&iacute;a:</h3>
         <form method='POST' action='?step=2'>
             <input type='hidden' name='query' value='movies'>
-            <% DaysBean bean = (DaysBean)request.getAttribute("days"); %>
+            <% Bean bean = (Bean)request.getAttribute("days"); %>
             <% List<String> days = bean.getDays(); %>
             <% ListIterator<String> it = days.listIterator(); %>
     		<% for(int ii=0; ii<days.size(); ii++){ %>
