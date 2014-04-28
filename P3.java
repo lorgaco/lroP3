@@ -31,7 +31,7 @@ public class P3 extends HttpServlet {
     	if(step.equals("1")){
     		String query = request.getParameter("query");
     		if(query.equals("movies")){
-                bean = new DaysBean();
+                bean = new Bean();
                 bean.setDays(TvGuide.getDays());
                 request.setAttribute("days", bean);
 

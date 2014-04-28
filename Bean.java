@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class DaysBean {
+public class Bean {
     List<String> days;
 
-    public DaysBean() {}
+    public Bean() {}
 
     public List<String> getDays() {
         return (days);
