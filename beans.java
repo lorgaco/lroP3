@@ -2,7 +2,7 @@
 public class DaysBean {
     List<String> days;
 
-    public AuxBean() {}
+    public DaysBean() {}
 
     public String getDays() {
         return (days);
