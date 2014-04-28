@@ -7,7 +7,7 @@ public class DaysBean {
 
     public DaysBean() {}
 
-    public String getDays() {
+    public List<String> getDays() {
         return (days);
     }
     public void setDays(List<String> d) {
