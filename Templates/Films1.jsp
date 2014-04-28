@@ -15,8 +15,7 @@
         <h3>Selecciona un d&iacute;a:</h3>
         <form method='POST' action='?step=2'>
             <input type='hidden' name='query' value='movies'>
-            <% daysBean bean = (daysBean)request.getAttribute("days"); %>
-    		<c:forEach var="element" items="${bean}">
+    		<c:forEach var="element" items="${bean.days}">
               <input type='radio' name='language' value='${element}'>${element}</option>
             </c:forEach>
             <p><input type='submit' value='Enviar'>
