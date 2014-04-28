@@ -16,17 +16,9 @@
         <form method='POST' action='?step=2'>
             <input type='hidden' name='query' value='movies'>
             <% daysBean bean = (daysBean)request.getAttribute("days"); %>
-            <% List<String> days = bean.getDays(); %>
-            <% ListIterator<String> it = days.listIterator(); %>
-    		<% for(int ii=0; ii<days.size(); ii++){ %>
-            <%    String day = it.next(); %>
-    		<%    if(ii==days.size()-1){ %>
-        	        <input type='radio' name='day' value='<%=day%>' checked><%=day%><BR>
-        	<%	  } %>
-    		<%    else{ %>
-    		    	  <input type='radio' name='day' value='<%=day%>' ><%=day%><BR>
-   		    <% 	  } %>
-    		<% } %>
+    		<c:forEach var="element" items="${bean}">
+              <option value="${element}">${element}</option>
+             </c:forEach>
             <p><input type='submit' value='Enviar'>
             <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].method=\"GET\"'>
         </form>
