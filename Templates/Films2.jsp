@@ -22,7 +22,7 @@
                     String channel = it.next(); %>
                     <input type='radio' name='channel' value='<%= channel %>'><%= channel %></option><br />
             <% }
-               if(bean.getChannels().size()>0){
+               if(bean.getChannels().size()>0){%>
                     <p><input type='submit' value='Enviar'>
             <% }%>
             <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].action="?step=1"'>
