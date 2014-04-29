@@ -16,7 +16,7 @@ public class channelsBean {
         return day;
     }
     public void setChannels(List<String> c) {
-        daysChannels=c;
+        channels=c;
     }
     public void setDay(String d){
         day = d;
