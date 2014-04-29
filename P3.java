@@ -34,7 +34,7 @@ public class P3 extends HttpServlet {
     		if(query.equals("movies")){
                 daysBean bean = new daysBean();
                 bean.setDays(TvGuide.getDays());
-                request.setAttribute("bean", bean);
+                request.setAttribute("daysBean", bean);
 
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher("/Films1.jsp");
@@ -73,7 +73,7 @@ public class P3 extends HttpServlet {
                 channelsBean bean = new channelsBean();
                 bean.setChannels(TvGuide.getChannels(day));
                 bean.setDay(day);
-                request.setAttribute("bean", bean);
+                request.setAttribute("channelsBean", bean);
 
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher("/Films2.jsp");
