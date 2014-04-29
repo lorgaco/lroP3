@@ -3,11 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class daysBean {
+public class channelsBean {
     String day;
     List<String> channels;
 
-    public daysBean() {}
+    public channelsBean() {}
 
     public List<String> getChannels() {
         return (channels);
