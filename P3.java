@@ -118,7 +118,7 @@ public class P3 extends HttpServlet {
     			String channel = request.getParameter("channel");
 
                 filmsBean bean = new filmsBean();
-                bean.setFilms(TvGuide.getFilms(day, channel));
+                bean.setFilms((packages.FimlPkg)TvGuide.getFilms(day, channel));
                 bean.setDay(day);
                 bean.setChannel(channel);
                 request.setAttribute("filmsBean", bean);
