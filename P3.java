@@ -70,8 +70,9 @@ public class P3 extends HttpServlet {
     		if(query.equals("movies")){
     			String day = request.getParameter("day");
 
-                daysBean bean = new daysBean();
+                channelsBean bean = new channelsBean();
                 bean.setChannels(TvGuide.getChannels(day));
+                bean.setDay(day);
                 request.setAttribute("bean", bean);
 
                 ServletContext sc = getServletContext();
