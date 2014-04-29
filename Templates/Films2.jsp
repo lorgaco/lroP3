@@ -1,6 +1,5 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="beans.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
