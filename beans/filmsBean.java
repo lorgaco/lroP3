@@ -2,6 +2,7 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import packages.*;
 
 public class filmsBean {
     String day;
