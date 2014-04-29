@@ -13,7 +13,7 @@
         <h1>Servicio de consulta de la programaci&oacute;n</h1>
         <h2>Idioma: ${channelsBean.language}, d&iacute;a: ${channelsBean.day}</h2>
         <h3>Selecciona un canal:</h3>
-        <form method='POST' action='?step=3'>
+        <form method='POST' action='?step=4'>
             <input type='hidden' name='query' value='shows'>
             <input type='hidden' name='language' value='${channelsBean.language}'>
             <input type='hidden' name='day' value='${channelsBean.day}'>

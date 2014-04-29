@@ -13,7 +13,7 @@
         <h1>Servicio de consulta de la programaci&oacute;n</h1>
         <h2>Idioma: ${daysBean.language}</h2>
         <h3>Selecciona un d&iacute;a:</h3>
-        <form method='POST' action='?step=2'>
+        <form method='POST' action='?step=3'>
             <input type='hidden' name='query' value='shows'>
             <input type='hidden' name='language' value='${daysBean.language}'>
             <% daysBean bean = (daysBean)request.getAttribute("daysBean"); %>
