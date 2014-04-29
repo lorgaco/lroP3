@@ -13,7 +13,7 @@ public class daysBean {
         return (channels);
     }
     public String getDay() {
-        return day
+        return day;
     }
     public void setChannels(List<String> c) {
         daysChannels=c;
