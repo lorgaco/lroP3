@@ -21,7 +21,7 @@
                     String day = it.next(); %>
                     <input type='radio' name='day' value='<%= day %>' <%if(ii==bean.getDays().size()-1){%>checked<%}%>><%= day %></option><br />
             <% }
-               if(bean.getChannels().size()>0){%>
+               if(bean.getDays().size()>0){%>
                     <p><input type='submit' value='Enviar'>
             <% }%>
             <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].method=\"GET\"'>

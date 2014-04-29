@@ -22,7 +22,7 @@
                     <input type='radio' name='language' value='<%= language %>'><%= language %></option><br />
             <% }%>
             <input type='radio' name='language' value='all' checked> Todos<BR>
-            <% if(bean.getChannels().size()>0){%>
+            <% if(bean.getLanguages().size()>0){%>
                     <p><input type='submit' value='Enviar'>
             <% }%>
             <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].method=\"GET\"'>
