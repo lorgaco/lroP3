@@ -5,7 +5,7 @@ import java.util.ListIterator;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import beans.*;
-import packages.*;
+//import packages.*;
 
 public class P3 extends HttpServlet {
 	
