@@ -16,9 +16,13 @@
         <h3>Selecciona un d&iacute;a:</h3>
         <form method='POST' action='?step=2'>
             <input type='hidden' name='query' value='movies'>
-    		<c:forEach var="element" items="${daysBean.days}">
+    		<% List<String> languages = TvGuide.getLanguages();
+               ListIterator<String> it = languages.listIterator();
+               for(int ii=0; ii<languages.size(); ii++){
+                    String language = it.next();
+            %>
               <input type='radio' name='language' value='${element}'>${element}</option>
-            </c:forEach>
+            <%}%>
             <p><input type='submit' value='Enviar'>
             <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].method=\"GET\"'>
         </form>
