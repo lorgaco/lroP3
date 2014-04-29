@@ -20,7 +20,7 @@
                for(int ii=0; ii<bean.getDays().size(); ii++){
                     String day = it.next();
             %>
-              <input type='radio' name='language' value='<%= day %>'>${element}</option>
+              <input type='radio' name='day' value='<%= day %>'><%= day %></option><br />
             <%}%>
             <p><input type='submit' value='Enviar'>
             <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].method=\"GET\"'>
