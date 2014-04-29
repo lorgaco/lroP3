@@ -18,11 +18,11 @@
             <input type='hidden' name='day' value='${channelsBean.day}'>
             <% channelsBean bean = (channelsBean)request.getAttribute("channelsBean"); %>
             <% ListIterator<String> it = bean.getChannels().listIterator();
-               for(int ii=0; ii<bean.getDays().size(); ii++){
+               for(int ii=0; ii<bean.getChannels().size(); ii++){
                     String channel = it.next(); %>
                     <input type='radio' name='channel' value='<%= channel %>'><%= channel %></option><br />
             <% }
-               if(bean.getDays().size()>0){
+               if(bean.getChannels().size()>0){
                     <p><input type='submit' value='Enviar'>
             <% }%>
             <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].action="?step=1"'>
