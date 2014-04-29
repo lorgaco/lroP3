@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.ListIterator;
 import packages.*;
 
-public class filmsBean {
+public class showsBean {
     String language;
     String day;
     String channel;
-    List<FilmPkg> films;
+    List<ShowPkg> shows;
 
-    public filmsBean() {}
+    public showsBean() {}
 
-    public List<FilmPkg> getFilms() {
+    public List<ShowPkg> getShows() {
         return (films);
     }
     public String getDay() {
@@ -24,8 +24,8 @@ public class filmsBean {
     public String getLanguage() {
         return (language);
     }
-    public void setFilms(List<FilmPkg> f) {
-        films = f;
+    public void setShows(List<ShowPkg> s) {
+        films = s;
     }
     public void setDay(String d) {
         day = d;

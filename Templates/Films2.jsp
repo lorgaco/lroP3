@@ -11,7 +11,7 @@
     </head>
     <body>
         <h1>Servicio de consulta de la programaci&oacute;n</h1>
-        <h2>D&iacute;a:${channelsBean.day}</h2>
+        <h2>D&iacute;a: ${channelsBean.day}</h2>
         <h3>Selecciona un canal:</h3>
         <form method='POST' action='?step=3'>
             <input type='hidden' name='query' value='movies'>

@@ -12,7 +12,7 @@
     </head>
     <body>
         <h1>Servicio de consulta de la programaci&oacute;n</h1>
-        <h2>D&iacute;a:${filmsBean.day}, canal:${filmsBean.channel}</h2>
+        <h2>D&iacute;a: ${filmsBean.day}, canal: ${filmsBean.channel}</h2>
         <h3>Estas son las pel&iacute;culas:</h3>
         <ul>
             <% filmsBean bean = (filmsBean)request.getAttribute("filmsBean"); %>
@@ -20,7 +20,7 @@
                for(int ii=0; ii<bean.getFilms().size(); ii++){
                     FilmPkg film = it.next(); %>
                     <li><%= film.title %> a las <%= film.time %><br />
-                    film.synopsis<p>
+                    <%= film.synopsis %><p>
             <% }%>
         </ul>
         <form method='POST'>

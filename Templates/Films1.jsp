@@ -20,8 +20,10 @@
                for(int ii=0; ii<bean.getDays().size(); ii++){
                     String day = it.next(); %>
                     <input type='radio' name='day' value='<%= day %>' <%if(ii==bean.getDays().size()-1){%>checked<%}%>><%= day %></option><br />
+            <% }
+               if(bean.getChannels().size()>0){%>
+                    <p><input type='submit' value='Enviar'>
             <% }%>
-            <p><input type='submit' value='Enviar'>
             <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].method=\"GET\"'>
         </form>
     </body>
