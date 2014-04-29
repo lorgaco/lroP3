@@ -15,7 +15,7 @@
         <h3>Selecciona un canal:</h3>
         <form method='POST' action='?step=2'>
             <input type='hidden' name='query' value='movies'>
-            <input type='hidden' name='day' value='${bean.day}'>
+            <input type='hidden' name='day' value='${channelsBean.day}'>
     		<c:forEach var="element" items="${channelsBean.channels}">
               <input type='radio' name='language' value='${element}'>${element}</option>
             </c:forEach>
