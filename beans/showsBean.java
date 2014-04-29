@@ -13,7 +13,7 @@ public class showsBean {
     public showsBean() {}
 
     public List<ShowPkg> getShows() {
-        return (films);
+        return (shows);
     }
     public String getDay() {
         return day;
@@ -25,7 +25,7 @@ public class showsBean {
         return (language);
     }
     public void setShows(List<ShowPkg> s) {
-        films = s;
+        shows = s;
     }
     public void setDay(String d) {
         day = d;
