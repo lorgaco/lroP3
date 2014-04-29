@@ -20,7 +20,7 @@
             <% ListIterator<String> it = bean.getChannels().listIterator();
                for(int ii=0; ii<bean.getChannels().size(); ii++){
                     String channel = it.next(); %>
-                    <input type='radio' name='channel' value='<%= channel %>'><%= channel %></option><br />
+                    <input type='radio' name='channel' value='<%= channel %>' <%if(ii==bean.getChannels().size()-1){checked}%>><%= channel %></option><br />
             <% }
                if(bean.getChannels().size()>0){%>
                     <p><input type='submit' value='Enviar'>
