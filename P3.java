@@ -130,7 +130,7 @@ public class P3 extends HttpServlet {
     			String channel = request.getParameter("channel");
 
                 showsBean bean = new showsBean();
-                List<FilmPkg> shows = TvGuide.getShows(day, channel);
+                List<ShowPkg> shows = TvGuide.getShows(day, channel, language);
                 bean.setShows(shows);
                 bean.setLanguage(language);
                 bean.setDay(day);
