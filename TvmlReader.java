@@ -12,6 +12,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import packages.*;
+
 
 public class TvmlReader {
 	List<Document> DOMList;
@@ -203,17 +205,4 @@ class TVML_ErrorHandler extends DefaultHandler {
 	public void fatalerror(SAXParseException spe) {
 		System.out.println("Fatal Error: "+spe.toString());
 	}
-}
-
-
-class FilmPkg {
-	public String title;
-	public String time;
-	public String synopsis;
-}
-
-class ShowPkg {
-	public String name;
-	public String time;
-	public String age;
 }

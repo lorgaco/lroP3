@@ -5,6 +5,7 @@ import java.util.ListIterator;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import beans.*;
+import packages.*;
 
 public class P3 extends HttpServlet {
 	
@@ -115,26 +116,16 @@ public class P3 extends HttpServlet {
     		if(query.equals("movies")){
     			String day = request.getParameter("day");
     			String channel = request.getParameter("channel");
-    			
-    			out.println("<h1>Servicio de consulta de la programaci&oacute;n</h1>");
-    		    out.println("<h2>D&iacute;a: " + day + ", canal: " + channel + "</h2>");
-    		    out.println("<h3>Estas son las pel&iacute;culas:</h3>");
-    		    out.println("<ul>");
-    		    List<FilmPkg> films = TvGuide.getFilms(day, channel);
-    		    ListIterator<FilmPkg> it = films.listIterator();
-    		    for(int ii=0; ii<films.size(); ii++){
-    		    	FilmPkg film = it.next();
-        		    out.println(" <li>" + film.title + " a las " + film.time + "<BR>");
-        		    out.println(film.synopsis + "<P>");
-    		    }
-    		    out.println("</ul>");
-    		    out.println("<form method='POST'>");
-    		    out.println("<input type='hidden' name='query' value='movies'>");
-    		    out.println("<input type='hidden' name='day' value='" + day + "'>");
-    		    out.println("<input type='submit' value='Atr&aacute;s' onClick='document.forms[0].action=\"?step=2\"'>");
-    		    out.println("<input type='submit' value='Inicio' onClick='document.forms[0].method=\"GET\"'>");
-    		    out.println("</form>");
-    		    out.println("</body></html>");
+
+                filmsBean bean = new filmsBean();
+                bean.setFilms(TvGuide.getFilms(day, channel));
+                bean.setDay(day);
+                bean.setChannel(channel);
+                request.setAttribute("filmsBean", bean);
+
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher("/Films3.jsp");
+                rd.forward(request,response);
     		}
     		else if(query.equals("shows")){
     			String day = request.getParameter("day");
