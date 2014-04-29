@@ -43,7 +43,7 @@ public class P3 extends HttpServlet {
     		}
     		else if(query.equals("shows")){
                 languagesBean bean = new languagesBean();
-                bean.setDays(TvGuide.getLanguages());
+                bean.setLanguages(TvGuide.getLanguages());
                 request.setAttribute("languagesBean", bean);
 
                 ServletContext sc = getServletContext();
@@ -130,8 +130,8 @@ public class P3 extends HttpServlet {
     			String channel = request.getParameter("channel");
 
                 showsBean bean = new showsBean();
-                List<FilmPkg> films = TvGuide.getFilms(day, channel);
-                bean.setFilms(films);
+                List<FilmPkg> shows = TvGuide.getShows(day, channel);
+                bean.setShows(shows);
                 bean.setLanguage(language);
                 bean.setDay(day);
                 bean.setChannel(channel);
