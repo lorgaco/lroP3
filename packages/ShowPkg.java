@@ -1,6 +1,6 @@
 package packages;
 
-class ShowPkg {
+public class ShowPkg {
     public String name;
     public String time;
     public String age;
