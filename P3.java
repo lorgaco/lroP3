@@ -34,7 +34,7 @@ public class P3 extends HttpServlet {
     		if(query.equals("movies")){
                 daysBean bean = new daysBean();
                 bean.setDays(TvGuide.getDays());
-                request.setAttribute("days", bean);
+                request.setAttribute("bean", bean);
 
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher("/Films1.jsp");
@@ -69,27 +69,14 @@ public class P3 extends HttpServlet {
 
     		if(query.equals("movies")){
     			String day = request.getParameter("day");
-    			
-    		    out.println("<h1>Servicio de consulta de la programaci&oacute;n</h1>");
-    		    out.println("<h2>D&iacute;a:" + day + "</h2>");
-    		    out.println("<h3>Selecciona un canal:</h3>");
-    		    out.println("<form method='POST' action='?step=3'>");
-    		    out.println("<input type='hidden' name='query' value='movies'>");
-    		    out.println("<input type='hidden' name='day' value='" + day + "'>");
-    		    List<String> channels = TvGuide.getChannels(day);
-    		    ListIterator<String> it = channels.listIterator();
-   		     	for(int ii=0; ii<channels.size(); ii++){
-   		     		String channel = it.next();
-   		     		out.println("<input type='radio' name='channel' value='" + channel + "' > " + channel + "<BR>");
-   		     		if(ii==channels.size()-1){
-   		     			out.println("<input type='radio' name='channel' value='all' checked> Todos<BR>");
-   		     		}
-   		     	}
-    		    out.println("<p><input type='submit' value='Enviar'>");
-    		    out.println("<input type='submit' value='Atr&aacute;s' onClick='document.forms[0].action=\"?step=1\"'>");
-    		    out.println("<input type='submit' value='Inicio' onClick='document.forms[0].method=\"GET\"'>");
-    		    out.println("</form>");
-    		    out.println("</body></html>");
+
+                daysBean bean = new daysBean();
+                bean.setChannels(TvGuide.getChannels(day));
+                request.setAttribute("bean", bean);
+
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher("/Films2.jsp");
+                rd.forward(request,response);
     		}
     		else if(query.equals("shows")){
     			String language = request.getParameter("language");
