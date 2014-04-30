@@ -50,6 +50,15 @@ public class P3 extends HttpServlet {
                 RequestDispatcher rd = sc.getRequestDispatcher("/Shows1.jsp");
                 rd.forward(request,response);
     		}
+            else if(query.equals("sports")){
+                languagesBean bean = new languagesBean();
+                bean.setLanguages(TvGuide.getLanguages());
+                request.setAttribute("languagesBean", bean);
+
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher("/Sports1.jsp");
+                rd.forward(request,response);
+            }
     		else {
     			//do 404
     		}
@@ -81,6 +90,18 @@ public class P3 extends HttpServlet {
                 RequestDispatcher rd = sc.getRequestDispatcher("/Shows2.jsp");
                 rd.forward(request,response);
     		}
+            else if(query.equals("sports")){
+                String language = request.getParameter("language");
+
+                daysBean bean = new daysBean();
+                bean.setDays(TvGuide.getDays());
+                bean.setLanguage(language);
+                request.setAttribute("daysBean", bean);
+
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher("/Sports2.jsp");
+                rd.forward(request,response);
+            }
     		else {
     			//do 404
     		}
@@ -117,6 +138,21 @@ public class P3 extends HttpServlet {
                 RequestDispatcher rd = sc.getRequestDispatcher("/Shows3.jsp");
                 rd.forward(request,response);
     		}
+            else if(query.equals("sports")){
+                String day = request.getParameter("day");
+                String language = request.getParameter("language");
+
+                showsBean bean = new showsBean();
+                List<ShowPkg> shows = TvGuide.getSportsShows(day, language);
+                bean.setShows(shows);
+                bean.setLanguage(language);
+                bean.setDay(day);
+                request.setAttribute("showsBean", bean);
+
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher("/Sports3.jsp");
+                rd.forward(request,response);
+            }
     		else {
     			//do 404
     		}

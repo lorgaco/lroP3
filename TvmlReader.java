@@ -192,6 +192,40 @@ public class TvmlReader {
 		}
 		return showList;
 	}
+
+    List<ShowPkg> getSportShows(String day, String lang){
+        List<ShowPkg> showList = new ArrayList<ShowPkg>();
+        ListIterator<String> it = daysList.listIterator();
+        for(int ii=0; ii<daysList.size(); ii++){
+            if(it.next().equals(day)) {
+                ListIterator<Document> docIt = DOMList.listIterator(ii);
+                NodeList lChannels = docIt.next().getElementsByTagName("Canal");
+                for(int jj=0; jj<lChannels.getLength(); jj++){
+                    Element eChannel = (Element)lChannels.item(jj);
+                    String sChannel = eChannel.getElementsByTagName("NombreCanal").item(0).getTextContent();
+                    if(eChannel.getAttribute("lang").equals(lang) || lang.equals("all") ){
+                        NodeList lPrograms = eChannel.getElementsByTagName("Programa");
+                        for(int ij=0; ij<lPrograms.getLength(); ij++){
+                            Element eShow = (Element)lPrograms.item(ij);
+                            String category = sShow.getElementsByTagName("Categoria").item(0).getTextContent();
+
+                            if(category.equals("Deportes")) {
+                                ShowPkg show = new ShowPkg();
+                                show.name = eShow.getElementsByTagName("NombrePrograma").item(0).getTextContent();
+                                Element eIntervalo = (Element) eShow.getElementsByTagName("Intervalo").item(0);
+                                show.time = eIntervalo.getElementsByTagName("HoraInicio").item(0).getTextContent();
+                                show.age = eShow.getAttribute("edadminima");
+
+                                showList.add(show);
+                            }
+                        }
+                    }
+                }
+                return showList;
+            }
+        }
+        return showList;
+    }
 }
 
 class TVML_ErrorHandler extends DefaultHandler {
