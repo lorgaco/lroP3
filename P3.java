@@ -143,7 +143,7 @@ public class P3 extends HttpServlet {
                 String language = request.getParameter("language");
 
                 showsBean bean = new showsBean();
-                List<ShowPkg> shows = TvGuide.getSportsShows(day, language);
+                List<ShowPkg> shows = TvGuide.getSportShows(day, language);
                 bean.setShows(shows);
                 bean.setLanguage(language);
                 bean.setDay(day);
