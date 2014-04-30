@@ -207,7 +207,7 @@ public class TvmlReader {
                         NodeList lPrograms = eChannel.getElementsByTagName("Programa");
                         for(int ij=0; ij<lPrograms.getLength(); ij++){
                             Element eShow = (Element)lPrograms.item(ij);
-                            String category = sShow.getElementsByTagName("Categoria").item(0).getTextContent();
+                            String category = eShow.getElementsByTagName("Categoria").item(0).getTextContent();
 
                             if(category.equals("Deportes")) {
                                 ShowPkg show = new ShowPkg();
