@@ -21,7 +21,7 @@ public class sportsBean {
     public String getLanguage() {
         return (language);
     }
-    public void setShows(List<ShowPkg> s) {
+    public void setShows(List<SportPkg> s) {
         sports = s;
     }
     public void setDay(String d) {
