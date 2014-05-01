@@ -14,7 +14,7 @@ public class sportsBean {
 
     public sportsBean() {}
 
-    public List<SportPkg> getShows() {
+    public List<SportPkg> getSports() {
         return sports;
     }
     public String getDay() {

@@ -15,12 +15,12 @@
         <h2>Idioma: ${showsBean.language}, d&iacute;a: ${showsBean.day}</h2>
         <h3>Estos son los programas de deportes:</h3>
         <ul>
-            <% showsBean bean = (showsBean)request.getAttribute("showsBean"); %>
-            <% ListIterator<ShowPkg> it = bean.getShows().listIterator();
-               for(int ii=0; ii<bean.getShows().size(); ii++){
-                    ShowPkg show = it.next(); %>
-                    <li><%= show.name %> a las <%= show.time %><br />
-                    edad m&iacute;nima <%= show.age %> años.<p>
+            <% sportsBean bean = (sportsBean)request.getAttribute("showsBean"); %>
+            <% ListIterator<SportPkg> it = bean.getSports().listIterator();
+               for(int ii=0; ii<bean.getSports().size(); ii++){
+                    SportPkg sport = it.next(); %>
+                    <li><%= sport.name %> a las <%= sport.time %><br />
+                    edad m&iacute;nima <%= sport.age %> años.  Duraci&oacute;n: <%= sport.duration %><p>
             <% }%>
         </ul>
         <form method='POST'>

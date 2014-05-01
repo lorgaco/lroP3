@@ -1,7 +1,9 @@
 import java.io.*;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -193,8 +195,8 @@ public class TvmlReader {
 		return showList;
 	}
 
-    List<ShowPkg> getSportShows(String day, String lang){
-        List<ShowPkg> showList = new ArrayList<ShowPkg>();
+    List<SportPkg> getSportShows(String day, String lang){
+        List<SportPkg> sportShowList = new ArrayList<SportPkg>();
         ListIterator<String> it = daysList.listIterator();
         for(int ii=0; ii<daysList.size(); ii++){
             if(it.next().equals(day)) {
@@ -210,13 +212,26 @@ public class TvmlReader {
                             String category = eShow.getElementsByTagName("Categoria").item(0).getTextContent();
 
                             if(category.equals("Deportes")) {
-                                ShowPkg show = new ShowPkg();
-                                show.name = eShow.getElementsByTagName("NombrePrograma").item(0).getTextContent();
+                                SportPkg sportShow = new SportPkg();
+                                sportShow.name = eShow.getElementsByTagName("NombrePrograma").item(0).getTextContent();
                                 Element eIntervalo = (Element) eShow.getElementsByTagName("Intervalo").item(0);
-                                show.time = eIntervalo.getElementsByTagName("HoraInicio").item(0).getTextContent();
-                                show.age = eShow.getAttribute("edadminima");
+                                sportShow.time = eIntervalo.getElementsByTagName("HoraInicio").item(0).getTextContent();
+                                sportShow.age = eShow.getAttribute("edadminima");
+                                NodeList nlDuracion = eShow.getElementsByTagName("Duracion");
+                                if(nlDuracion.getLength() == 0) {
+                                    String sEndingTime = eShow.getElementsByTagName("HoraFin").item(0).getTextContent();
 
-                                showList.add(show);
+                                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                                    Date dEndingTime = sdf.parse(sEndingTime);
+                                    Date dTime = sdf.parse(sportShow.time);
+
+                                    long msDuration = dEndingTime.getTime() - dTime.getTime();
+                                    sportShow.duration = String.valueOf(msDuration);
+                                }
+                                else {
+                                    sportShow.duration = nlDuracion.item(0).getTextContent();
+                                }
+                                sportShowList.add(show);
                             }
                         }
                     }
