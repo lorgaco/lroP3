@@ -17,7 +17,7 @@ public class daysBean {
         return (language);
     }
     public void setDays(List<String> d) {
-        days = (List)d.clone();
+        days = new ArrayList<String>(d);
         Collections.sort(days);
     }
     public void setLanguage(String l) {
