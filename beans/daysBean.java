@@ -10,7 +10,7 @@ public class daysBean {
     public daysBean() {}
 
     public List<String> getDays() {
-        return (days);
+        return Collections.sort(days);
     }
     public String getLanguage() {
         return (language);
