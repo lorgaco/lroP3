@@ -1,5 +1,6 @@
 import java.io.*;
 import java.lang.Integer;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -223,11 +224,18 @@ public class TvmlReader {
                                     String sEndingTime = eShow.getElementsByTagName("HoraFin").item(0).getTextContent();
 
                                     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                                    Date dEndingTime = sdf.parse(sEndingTime);
-                                    Date dTime = sdf.parse(sportShow.time);
+                                    try {
+                                        Date dEndingTime = sdf.parse(sEndingTime);
+                                        Date dTime = sdf.parse(sportShow.time);
+                                        long msDuration = dEndingTime.getTime() - dTime.getTime();
+                                        sportShow.duration = String.valueOf(msDuration);
+                                    } catch (ParseException e) {
+                                        StringWriter sw = new StringWriter();
+                                        PrintWriter pw = new PrintWriter(sw);
+                                        e.printStackTrace(pw);
+                                        sportShow.duration = sw.toString();
+                                    }
 
-                                    long msDuration = dEndingTime.getTime() - dTime.getTime();
-                                    sportShow.duration = String.valueOf(msDuration);
                                 }
                                 else {
                                     sportShow.duration = nlDuracion.item(0).getTextContent();
