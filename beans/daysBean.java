@@ -2,6 +2,7 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Collections;
 
 public class daysBean {
     String language;
@@ -10,6 +11,7 @@ public class daysBean {
     public daysBean() {}
 
     public List<String> getDays() {
+        Collections.sort(days);
         return days;
     }
     public String getLanguage() {
