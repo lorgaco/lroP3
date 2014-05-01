@@ -10,11 +10,11 @@ import packages.*;
 public class sportsBean {
     String language;
     String day;
-    ArrayList<SportPkg> sports;
+    List<SportPkg> sports;
 
     public sportsBean() {}
 
-    public ArrayList<SportPkg> getShows() {
+    public List<SportPkg> getShows() {
         return Collections.sort(sports, new DurationComparator());
     }
     public String getDay() {
@@ -23,7 +23,7 @@ public class sportsBean {
     public String getLanguage() {
         return (language);
     }
-    public void setShows(ArrayList<SportPkg> s) {
+    public void setShows(List<SportPkg> s) {
         sports = s;
     }
     public void setDay(String d) {
