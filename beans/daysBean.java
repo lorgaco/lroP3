@@ -18,7 +18,7 @@ public class daysBean {
     }
     public void setDays(List<String> d) {
         days = d;
-        Collections.sort(days);
+        //Collections.sort(days);
     }
     public void setLanguage(String l) {
         language = l;

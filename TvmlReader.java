@@ -228,7 +228,7 @@ public class TvmlReader {
                                         Date dEndingTime = sdf.parse(sEndingTime);
                                         Date dTime = sdf.parse(sportShow.time);
                                         long msDuration = dEndingTime.getTime() - dTime.getTime();
-                                        sportShow.duration = String.valueOf(msDuration);
+                                        sportShow.duration = String.valueOf(msDuration/1000);
                                     } catch (ParseException e) {
                                         StringWriter sw = new StringWriter();
                                         PrintWriter pw = new PrintWriter(sw);
