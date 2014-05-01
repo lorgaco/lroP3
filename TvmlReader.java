@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -231,15 +232,15 @@ public class TvmlReader {
                                 else {
                                     sportShow.duration = nlDuracion.item(0).getTextContent();
                                 }
-                                sportShowList.add(show);
+                                sportShowList.add(sportShow);
                             }
                         }
                     }
                 }
-                return showList;
+                return sportShowList;
             }
         }
-        return showList;
+        return sportShowList;
     }
 }
 
