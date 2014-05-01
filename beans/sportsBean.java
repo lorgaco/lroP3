@@ -15,8 +15,7 @@ public class sportsBean {
     public sportsBean() {}
 
     public List<SportPkg> getShows() {
-        List<SportPkg> sportsAux = sports;
-        return Collections.sort(sportsAux, new DurationComparator());
+        return sports;
     }
     public String getDay() {
         return day;
@@ -24,8 +23,9 @@ public class sportsBean {
     public String getLanguage() {
         return (language);
     }
-    public void setShows(List<SportPkg> s) {
+    public void setSports(List<SportPkg> s) {
         sports = s;
+        Collections.sort(sports, new DurationComparator());
     }
     public void setDay(String d) {
         day = d;

@@ -11,13 +11,14 @@ public class daysBean {
     public daysBean() {}
 
     public List<String> getDays() {
-        return Collections.sort(days);
+        return days;
     }
     public String getLanguage() {
         return (language);
     }
     public void setDays(List<String> d) {
         days = d;
+        Collections.sort(days);
     }
     public void setLanguage(String l) {
         language = l;
