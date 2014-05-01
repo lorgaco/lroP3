@@ -47,7 +47,7 @@ public class P3 extends HttpServlet {
                 request.setAttribute("languagesBean", bean);
 
                 ServletContext sc = getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher("/Sports1.jsp");
+                RequestDispatcher rd = sc.getRequestDispatcher("/Shows1.jsp");
                 rd.forward(request,response);
     		}
             else if(query.equals("sports")){
