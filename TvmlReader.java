@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -90,6 +91,8 @@ public class TvmlReader {
 				}
                 ii++;
 			}while(ii<DOMList.size());
+
+            Collections.sort(daysList);
 			
 		}catch(Exception ex){
 			ex.printStackTrace();
