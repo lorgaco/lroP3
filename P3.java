@@ -144,7 +144,7 @@ public class P3 extends HttpServlet {
 
                 sportsBean bean = new sportsBean();
                 List<SportPkg> sports = TvGuide.getSportShows(day, language);
-                bean.getSports(sports);
+                bean.setSports(sports);
                 bean.setLanguage(language);
                 bean.setDay(day);
                 request.setAttribute("showsBean", bean);
