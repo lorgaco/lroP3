@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Collections;
 import java.util.Collections;
-import java.util.Collection;
 import java.util.Comparator;
 import packages.*;
 
@@ -16,7 +15,7 @@ public class sportsBean {
     public sportsBean() {}
 
     public List<SportPkg> getShows() {
-        return Collections.sort(sports, new SportsComparator());
+        return Collections.sort(sports, new DurationComparator());
     }
     public String getDay() {
         return day;
@@ -35,7 +34,7 @@ public class sportsBean {
     }
 }
 
-class SportsComparator implements Comparator<SportPkg> {
+class DurationComparator implements Comparator<SportPkg> {
     @Override
     public int compare(SportPkg o1, SportPkg o2) {
         return o1.duration.compareTo(o2.duration);
