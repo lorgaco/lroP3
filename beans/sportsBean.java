@@ -10,7 +10,7 @@ public class sportsBean {
     String day;
     List<SportPkg> sports;
 
-    public showsBean() {}
+    public sportsBean() {}
 
     public List<SportPkg> getShows() {
         return Collections.sort(sports, new SportsComparator());
