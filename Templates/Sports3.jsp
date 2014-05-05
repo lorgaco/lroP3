@@ -20,7 +20,7 @@
                for(int ii=0; ii<bean.getShows().size(); ii++){
                     ShowPkg sport = it.next(); %>
                     <li><%= sport.name %> a las <%= sport.time %><br />
-                    edad m&iacute;nima <%= sport.age %> años.  Duraci&oacute;n: <%= sport.duration %> minutos<p>
+                    edad m&iacute;nima <%= sport.age %> a&ntilde;os.  Duraci&oacute;n: <%= sport.duration %> minutos<p>
             <% }%>
         </ul>
         <form method='POST'>
