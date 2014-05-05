@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='ISO-8859-1' standalone='no'?>
 
-<!DOCTYPE Programacion SYSTEM "tvml14.dtd">
+<Programacion
+        xmlns="http://www.w3schools.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://localhost:8024/lro24/tvml14.xsd">
 
-<Programacion>
     <Fecha>24/12/2001</Fecha>
 
     <Canal lang='es' teletexto='si'>
@@ -57,7 +59,7 @@
         <Formato>16:9</Formato>
         <Programa edadminima='3' langs='es'>
             <NombrePrograma>Game of Thrones</NombrePrograma>
-            <Categoria>Series</Categoria>
+            <Categoria>Cine</Categoria>
             <Intervalo>
                 <HoraInicio>15:00</HoraInicio>
                 <HoraFin>16:00</HoraFin>

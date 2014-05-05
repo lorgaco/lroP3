@@ -1,7 +1,5 @@
 package packages;
 
-public class FilmPkg {
-    public String title;
-    public String time;
+public class FilmPkg extends ShowPkg {
     public String synopsis;
 }

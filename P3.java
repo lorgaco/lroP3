@@ -113,9 +113,9 @@ public class P3 extends HttpServlet {
     			String day = request.getParameter("day");
     			String channel = request.getParameter("channel");
 
-                filmsBean bean = new filmsBean();
-                List<FilmPkg> films = TvGuide.getFilms(day, channel);
-                bean.setFilms(films);
+                showsBean bean = new showsBean();
+                List<ShowPkg> films = TvGuide.getFilms(day, channel);
+                bean.setShows(films);
                 bean.setDay(day);
                 bean.setChannel(channel);
                 request.setAttribute("filmsBean", bean);
@@ -142,9 +142,9 @@ public class P3 extends HttpServlet {
                 String day = request.getParameter("day");
                 String language = request.getParameter("language");
 
-                sportsBean bean = new sportsBean();
-                List<SportPkg> sports = TvGuide.getSportShows(day, language);
-                bean.setSports(sports);
+                showsBean bean = new showsBean();
+                List<ShowPkg> sports = TvGuide.getSportShows(day, language);
+                bean.setShows(sports);
                 bean.setLanguage(language);
                 bean.setDay(day);
                 request.setAttribute("showsBean", bean);

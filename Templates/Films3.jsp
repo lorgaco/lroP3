@@ -15,9 +15,9 @@
         <h2>D&iacute;a: ${filmsBean.day}, canal: ${filmsBean.channel}</h2>
         <h3>Estas son las pel&iacute;culas:</h3>
         <ul>
-            <% filmsBean bean = (filmsBean)request.getAttribute("filmsBean"); %>
-            <% ListIterator<FilmPkg> it = bean.getFilms().listIterator();
-               for(int ii=0; ii<bean.getFilms().size(); ii++){
+            <% showsBean bean = (showsBean)request.getAttribute("filmsBean"); %>
+            <% ListIterator<ShowPkg> it = bean.getShows().listIterator();
+               for(int ii=0; ii<bean.getShows().size(); ii++){
                     FilmPkg film = it.next(); %>
                     <li><%= film.title %> a las <%= film.time %><br />
                     <%= film.synopsis %><p>

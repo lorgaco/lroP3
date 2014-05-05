@@ -128,8 +128,8 @@ public class TvmlReader {
 		return channelList;
 	}
 	
-	List<FilmPkg> getFilms(String day, String channel){
-		List<FilmPkg> filmList = new ArrayList<FilmPkg>();
+	List<ShowPkg> getFilms(String day, String channel){
+		List<ShowPkg> filmList = new ArrayList<ShowPkg>();
 		ListIterator<String> it = daysList.listIterator();
 		for(int ii=0; ii<daysList.size(); ii++){
 			if(it.next().equals(day)) {
@@ -144,8 +144,8 @@ public class TvmlReader {
 							Element eFilm = (Element)lPrograms.item(ij);
 							String category = eFilm.getElementsByTagName("Categoria").item(0).getTextContent();
 							if(category.equals("Cine")){
-								FilmPkg film = new FilmPkg();
-								film.title = eFilm.getElementsByTagName("NombrePrograma").item(0).getTextContent();
+                                ShowPkg film = new ShowPkg();
+								film.name = eFilm.getElementsByTagName("NombrePrograma").item(0).getTextContent();
 								Element eIntervalo = (Element)eFilm.getElementsByTagName("Intervalo").item(0);  
 								film.time = eIntervalo.getElementsByTagName("HoraInicio").item(0).getTextContent();
 								
@@ -197,8 +197,8 @@ public class TvmlReader {
 		return showList;
 	}
 
-    List<SportPkg> getSportShows(String day, String lang){
-        List<SportPkg> sportShowList = new ArrayList<SportPkg>();
+    List<ShowPkg> getSportShows(String day, String lang){
+        List<ShowPkg> sportShowList = new ArrayList<ShowPkg>();
         ListIterator<String> it = daysList.listIterator();
         for(int ii=0; ii<daysList.size(); ii++){
             if(it.next().equals(day)) {
@@ -214,7 +214,7 @@ public class TvmlReader {
                             String category = eShow.getElementsByTagName("Categoria").item(0).getTextContent();
 
                             if(category.equals("Deportes")) {
-                                SportPkg sportShow = new SportPkg();
+                                ShowPkg sportShow = new ShowPkg();
                                 sportShow.name = eShow.getElementsByTagName("NombrePrograma").item(0).getTextContent();
                                 Element eIntervalo = (Element) eShow.getElementsByTagName("Intervalo").item(0);
                                 sportShow.time = eIntervalo.getElementsByTagName("HoraInicio").item(0).getTextContent();
