@@ -41,60 +41,63 @@ public class TvmlReader {
 			if(!included) langsList.add(langl[ii]);
 		}
 	}
-	
-	void Read(){
-		try{
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			dbf.setValidating(true);
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			db.setErrorHandler(new TVML_ErrorHandler());
-			DOMList = new ArrayList<Document>();
-			langsList = new ArrayList<String>();
-			daysList = new ArrayList<String>();
-			
-			Document doc = db.parse("http://localhost:8024/lro24/tvml-ok.xml");
-			DOMList.add(doc);
 
-			ListIterator<Document> it = DOMList.listIterator();
-			int ii=0;
-			do{
-				it = DOMList.listIterator(ii);
+    Void Read(){
+        try{
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            dbf.setValidating(true);
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            db.setErrorHandler(new TVML_ErrorHandler());
+            DOMList = new ArrayList<Document>();
+            langsList = new ArrayList<String>();
+            daysList = new ArrayList<String>();
+
+            Document doc = db.parse("http://localhost:8024/lro24/tvml-ok.xml");
+            daysList.add(doc.getDocumentElement().getElementsByTagName("Fecha").item(0).getTextContent());
+            DOMList.add(doc);
+
+            ListIterator<Document> it = DOMList.listIterator();
+            int ii=0;
+            do{
+                it = DOMList.listIterator(ii);
                 doc = it.next();
-				NodeList lChannels = doc.getElementsByTagName("Canal");
-				daysList.add(doc.getDocumentElement().getElementsByTagName("Fecha").item(0).getTextContent());
-				
-				for(int jj=0; jj<lChannels.getLength(); jj++){
-					Element eChannel = (Element)lChannels.item(jj);
-					
-					// create languages list
-					addLang(eChannel.getAttribute("lang").toString());
-					/*NodeList lPrograms = eChannel.getElementsByTagName("Programa");
-					for(int ij=0; ij<lPrograms.getLength(); ij++){
-						Element eProgram = (Element)lPrograms.item(ij);
-						String lang = eProgram.getAttribute("langs");
-						if(!lang.equals("")) addLang(lang);
-					}*/
-					
-					// look for more tvmls
-					NodeList nlUrl = eChannel.getElementsByTagName("UrlTVML");
-					if(nlUrl.getLength()>0){
-						url=nlUrl.item(0).getTextContent();
-						try{
-							doc = db.parse(url);
-							DOMList.add(doc);
-						}catch(Exception ex){
-							ex.printStackTrace();
-							url="no doc found";
-						}
-					}
-				}
+                NodeList lChannels = doc.getElementsByTagName("Canal");
+
+                for(int jj=0; jj<lChannels.getLength(); jj++){
+                    Element eChannel = (Element)lChannels.item(jj);
+
+                    // create languages list
+                    addLang(eChannel.getAttribute("lang").toString());
+
+                    // look for more tvmls
+                    NodeList nlUrl = eChannel.getElementsByTagName("UrlTVML");
+                    NodeList nlDate = eChannel.getElementsByTagName("Fecha");
+                    if(nlUrl.getLength()>0 && nlDate.getLength()>0){
+                        String date = nlDate.item(0).getTextContent();
+                        if(!daysList.contains(date)) {
+                            url = nlUrl.item(0).getTextContent();
+                            try {
+                                doc = db.parse(url);
+                                DOMList.add(doc);
+                                daysList.add(date);
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                                url = "no doc found";
+                            }
+                        }
+                    }
+                }
                 ii++;
-			}while(ii<DOMList.size());
-			
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
-	}
+            }while(ii<DOMList.size());
+
+        }catch(Exception ex){
+            //ex.printStackTrace();
+            final StringWriter sw = new StringWriter();
+            final PrintWriter pw = new PrintWriter(sw, true);
+            ex.printStackTrace(pw);
+            return sw.getBuffer().toString();
+        }
+    }
 
     List<String> getDays(){
 		return daysList;
@@ -153,7 +156,8 @@ public class TvmlReader {
 								eFilmCp.getElementsByTagName("Categoria").item(0).setTextContent("");
 								eFilmCp.getElementsByTagName("NombrePrograma").item(0).setTextContent("");
 								((Element)eFilmCp.getElementsByTagName("Intervalo").item(0)).setTextContent("");
-								
+                                film.duration = "";
+
 								film.synopsis = eFilmCp.getTextContent();
 								filmList.add(film);
 							}
@@ -186,7 +190,8 @@ public class TvmlReader {
 							Element eIntervalo = (Element)eShow.getElementsByTagName("Intervalo").item(0);  
 							show.time = eIntervalo.getElementsByTagName("HoraInicio").item(0).getTextContent();
 							show.age = eShow.getAttribute("edadminima");
-							
+                            show.duration = "";
+
 							showList.add(show);
 						}
 					}
