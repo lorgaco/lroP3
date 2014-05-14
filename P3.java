@@ -15,7 +15,11 @@ public class P3 extends HttpServlet {
     throws IOException, ServletException
     {
     	TvGuide = new TvmlReader();
-    	TvGuide.Read();
+        String errors = TvGuide.Read();
+
+        errorBean bean = new errorBean();
+        bean.setError(errors);
+        request.setAttribute("errorBean", bean);
 
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/Home.jsp");

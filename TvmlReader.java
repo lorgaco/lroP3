@@ -42,8 +42,12 @@ public class TvmlReader {
 		}
 	}
 
-    Void Read(){
+    String Read(){
+
+        String errors = "All files ok";
+
         try{
+
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setValidating(true);
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -78,11 +82,20 @@ public class TvmlReader {
                             url = nlUrl.item(0).getTextContent();
                             try {
                                 doc = db.parse(url);
-                                DOMList.add(doc);
-                                daysList.add(date);
+                                String Error = ErrorHandler.getError();
+                                if(Error.equals("Ok")) {
+                                    DOMList.add(doc);
+                                    daysList.add(date);
+                                }
+                                else {
+                                    errors = errors + Error + "<br /><br />";
+                                }
                             } catch (Exception ex) {
-                                ex.printStackTrace();
-                                url = "no doc found";
+                                if(errors.equals("All files ok")) errors = "";
+                                final StringWriter sw = new StringWriter();
+                                final PrintWriter pw = new PrintWriter(sw, true);
+                                ex.printStackTrace(pw);
+                                errors = errors + "Error: " + ex.toString() + "<br /><br />";
                             }
                         }
                     }
@@ -258,14 +271,24 @@ public class TvmlReader {
 }
 
 class TVML_ErrorHandler extends DefaultHandler {
-	public TVML_ErrorHandler () {}
-	public void warning(SAXParseException spe) {
-		System.out.println("Warning: "+spe.toString());
-	}
-	public void error(SAXParseException spe) {
-		System.out.println("Error: "+spe.toString());
-	}
-	public void fatalerror(SAXParseException spe) {
-		System.out.println("Fatal Error: "+spe.toString());
-	}
+
+    String Error;
+
+    public TVML_ErrorHandler () {
+        Error = "Ok";
+    }
+    public void warning(SAXParseException spe) {
+        Error = "Warning: "+spe.toString();
+    }
+    public void error(SAXParseException spe) {
+        Error = "Error: "+spe.toString();
+    }
+    public void fatalerror(SAXParseException spe) {
+        Error = "Fatal Error: "+spe.toString();
+    }
+    public String getError() {
+        String toReturn = new String(Error);
+        Error = "Ok";
+        return toReturn;
+    }
 }
