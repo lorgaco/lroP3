@@ -15,7 +15,7 @@ public class P3 extends HttpServlet {
     throws IOException, ServletException
     {
     	TvGuide = new TvmlReader();
-        String errors = TvGuide.Read();
+        List<String> errors = TvGuide.Read();
 
         errorBean bean = new errorBean();
         bean.setError(errors);

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.lang.Integer;
+import java.lang.String;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class TvmlReader {
 
     String Read(){
 
-        String errors = "All files ok";
+        List<String> errors = new ArrayList<String>();
 
         try{
 
@@ -88,15 +89,14 @@ public class TvmlReader {
                                     daysList.add(date);
                                 }
                                 else {
-                                    if(errors.equals("All files ok")) errors = "";
-                                    errors = errors + Error + "<br /><br />";
+                                    errors.add(Error.toString());
                                 }
                             } catch (Exception ex) {
                                 if(errors.equals("All files ok")) errors = "";
                                 final StringWriter sw = new StringWriter();
                                 final PrintWriter pw = new PrintWriter(sw, true);
                                 ex.printStackTrace(pw);
-                                errors = errors + "Error: " + ex.toString() + "<br />";
+                                errors.add("Error: " + ex.toString());
                             }
                         }
                     }
@@ -109,8 +109,13 @@ public class TvmlReader {
             final StringWriter sw = new StringWriter();
             final PrintWriter pw = new PrintWriter(sw, true);
             ex.printStackTrace(pw);
-            return sw.getBuffer().toString();
+            List<String> exReturn = new ArrayList<String>();
+            exReturn.add(sw.getBuffer().toString());
+            return exReturn;
         }
+
+        if(errors.isEmpty()) errors.add("All files ok");
+        return errors;
     }
 
     List<String> getDays(){

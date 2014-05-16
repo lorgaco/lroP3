@@ -8,7 +8,15 @@
     <body>
         <h1>Servicio de consulta de la programaci&oacute;n</h1>
         <h2>Bienvenido a este servicio</h2>
-        Estado de los TVML:<br />${errorBean.Error}
+
+        Estado de los TVML:<br />
+        <% errorBean bean = (errorBean)request.getAttribute("errorBean"); %>
+        <% ListIterator<String> it = bean.getError().listIterator();
+           for(int ii=0; ii<bean.getError().size(); ii++){
+                String error = it.next(); %>
+                <%= error %></option><br />
+        <% }%>
+
         <h3>Selecciona lo que quieres buscar:</h3>
         <form method='POST' action='?step=1'>
             <input type='radio' name='query' value='shows'> Consulta Series<br>
