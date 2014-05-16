@@ -19,7 +19,7 @@
             <% ListIterator<ShowPkg> it = bean.getShows().listIterator();
                for(int ii=0; ii<bean.getShows().size(); ii++){
                     ShowPkg film = it.next(); %>
-                    <li><%= film.title %> a las <%= film.time %><br />
+                    <li><%= film.name %> a las <%= film.time %><br />
                     <%= film.synopsis %><p>
             <% }%>
         </ul>
