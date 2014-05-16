@@ -52,7 +52,8 @@ public class TvmlReader {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setValidating(true);
             DocumentBuilder db = dbf.newDocumentBuilder();
-            db.setErrorHandler(new TVML_ErrorHandler());
+            TVML_ErrorHandler ErrorHandler = new TVML_ErrorHandler();
+            db.setErrorHandler(ErrorHandler);
             DOMList = new ArrayList<Document>();
             langsList = new ArrayList<String>();
             daysList = new ArrayList<String>();
