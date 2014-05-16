@@ -43,7 +43,7 @@ public class TvmlReader {
 		}
 	}
 
-    String Read(){
+    List<String> Read(){
 
         List<String> errors = new ArrayList<String>();
 
@@ -92,7 +92,6 @@ public class TvmlReader {
                                     errors.add(Error.toString());
                                 }
                             } catch (Exception ex) {
-                                if(errors.equals("All files ok")) errors = "";
                                 final StringWriter sw = new StringWriter();
                                 final PrintWriter pw = new PrintWriter(sw, true);
                                 ex.printStackTrace(pw);
