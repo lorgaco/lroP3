@@ -96,7 +96,7 @@ public class TvmlReader {
                                 final StringWriter sw = new StringWriter();
                                 final PrintWriter pw = new PrintWriter(sw, true);
                                 ex.printStackTrace(pw);
-                                errors.add("Error: " + ex.toString());
+                                errors.add("Error: " + ex.getMessage() + " Fichero: " + ex.getSystemId() + " Linea " + ex.getLineNumber() + ", Columna " ex.getColumnNumber(););
                             }
                         }
                     }
@@ -285,13 +285,13 @@ class TVML_ErrorHandler extends DefaultHandler {
         Error = "Ok";
     }
     public void warning(SAXParseException spe) {
-        Error = "Warning: "+spe.toString();
+        Error = "Warning: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " spe.getColumnNumber();
     }
     public void error(SAXParseException spe) {
-        Error = "Error: "+spe.toString();
+        Error = "Error: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " spe.getColumnNumber();
     }
     public void fatalerror(SAXParseException spe) {
-        Error = "Fatal Error: "+spe.toString();
+        Error = "Fatal Error: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " spe.getColumnNumber();
     }
     public String getError() {
         String toReturn = new String(Error);
