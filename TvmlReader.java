@@ -92,11 +92,11 @@ public class TvmlReader {
                                 else {
                                     errors.add(Error.toString());
                                 }
-                            } catch (Exception ex) {
+                            } catch (SAXParseException ex) {
                                 final StringWriter sw = new StringWriter();
                                 final PrintWriter pw = new PrintWriter(sw, true);
                                 ex.printStackTrace(pw);
-                                errors.add("Error: " + ex.getMessage() + " Fichero: " + ex.getSystemId() + " Linea " + ex.getLineNumber() + ", Columna " ex.getColumnNumber(););
+                                errors.add("Error: " + ex.getMessage() + " Fichero: " + ex.getSystemId() + " Linea " + ex.getLineNumber() + ", Columna " + ex.getColumnNumber());
                             }
                         }
                     }
@@ -211,6 +211,7 @@ public class TvmlReader {
                             Element eIntervalo = (Element)eShow.getElementsByTagName("Intervalo").item(0);
                             show.time = eIntervalo.getElementsByTagName("HoraInicio").item(0).getTextContent();
                             show.age = eShow.getAttribute("edadminima");
+                            show.duration = "";
 
                             showList.add(show);
                         }
@@ -232,20 +233,21 @@ public class TvmlReader {
                 for(int jj=0; jj<lChannels.getLength(); jj++){
                     Element eChannel = (Element)lChannels.item(jj);
                     String sChannel = eChannel.getElementsByTagName("NombreCanal").item(0).getTextContent();
-                    if(eChannel.getAttribute("lang").equals(lang) || lang.equals("all") ){
-                        NodeList lPrograms = eChannel.getElementsByTagName("Programa");
-                        for(int ij=0; ij<lPrograms.getLength(); ij++){
-                            Element eShow = (Element)lPrograms.item(ij);
-                            String category = eShow.getElementsByTagName("Categoria").item(0).getTextContent();
-
-                            if(category.equals("Deportes")) {
+                    NodeList lPrograms = eChannel.getElementsByTagName("Programa");
+                    for(int ij=0; ij<lPrograms.getLength(); ij++){
+                        Element eShow = (Element)lPrograms.item(ij);
+                        String category = eShow.getElementsByTagName("Categoria").item(0).getTextContent();
+                        if(((eShow.getAttribute("langs").equals("") && eChannel.getAttribute("lang").equals(lang))
+                                || (!eShow.getAttribute("langs").equals("") && eShow.getAttribute("langs").contains(lang)))
+                                || lang.equals("all")) {
+                            if (category.equals("Deportes")) {
                                 ShowPkg sportShow = new ShowPkg();
                                 sportShow.name = eShow.getElementsByTagName("NombrePrograma").item(0).getTextContent();
                                 Element eIntervalo = (Element) eShow.getElementsByTagName("Intervalo").item(0);
                                 sportShow.time = eIntervalo.getElementsByTagName("HoraInicio").item(0).getTextContent();
                                 sportShow.age = eShow.getAttribute("edadminima");
                                 NodeList nlDuracion = eShow.getElementsByTagName("Duracion");
-                                if(nlDuracion.getLength() == 0) {
+                                if (nlDuracion.getLength() == 0) {
                                     String sEndingTime = eShow.getElementsByTagName("HoraFin").item(0).getTextContent();
 
                                     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
@@ -253,7 +255,7 @@ public class TvmlReader {
                                         Date dEndingTime = sdf.parse(sEndingTime);
                                         Date dTime = sdf.parse(sportShow.time);
                                         long msDuration = dEndingTime.getTime() - dTime.getTime();
-                                        sportShow.duration = String.valueOf(msDuration/1000);
+                                        sportShow.duration = String.valueOf(msDuration / 1000);
                                     } catch (ParseException e) {
                                         StringWriter sw = new StringWriter();
                                         PrintWriter pw = new PrintWriter(sw);
@@ -261,8 +263,7 @@ public class TvmlReader {
                                         sportShow.duration = sw.toString();
                                     }
 
-                                }
-                                else {
+                                } else {
                                     sportShow.duration = nlDuracion.item(0).getTextContent();
                                 }
                                 sportShowList.add(sportShow);
@@ -285,13 +286,13 @@ class TVML_ErrorHandler extends DefaultHandler {
         Error = "Ok";
     }
     public void warning(SAXParseException spe) {
-        Error = "Warning: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " spe.getColumnNumber();
+        Error = "Warning: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " + spe.getColumnNumber();
     }
     public void error(SAXParseException spe) {
-        Error = "Error: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " spe.getColumnNumber();
+        Error = "Error: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " + spe.getColumnNumber();
     }
     public void fatalerror(SAXParseException spe) {
-        Error = "Fatal Error: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " spe.getColumnNumber();
+        Error = "Fatal Error: " + spe.getMessage() + " Fichero: " + spe.getSystemId() + " Linea " + spe.getLineNumber() + ", Columna " + spe.getColumnNumber();
     }
     public String getError() {
         String toReturn = new String(Error);
